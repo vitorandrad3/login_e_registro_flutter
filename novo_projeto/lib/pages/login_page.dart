@@ -18,7 +18,7 @@ class LoginPage extends StatelessWidget {
               children: [
                 const Text(
                   'Login',
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.2,
@@ -44,23 +44,27 @@ class LoginPage extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.06,
                 ),
                 CustomLoginButtom(formkey: _formkey),
-                const SizedBox(height: 200),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.75,
                   child: const Divider(
                     thickness: 1,
                   ),
                 ),
-                const Text(
-                  'não tem uma conta ainda? cadastre-se:',
-                  style: TextStyle(fontWeight: FontWeight.w300),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'não tem uma conta ainda? ',
+                      style: TextStyle(fontWeight: FontWeight.w300),
+                    ),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/registerpage');
+                        },
+                        child: const Text('Cadastre-se.'))
+                  ],
                 ),
                 const SizedBox(height: 20),
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/registerpage');
-                    },
-                    child: const Text('cadastrar')),
               ],
             ),
           ),

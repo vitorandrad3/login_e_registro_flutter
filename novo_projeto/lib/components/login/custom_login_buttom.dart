@@ -11,25 +11,34 @@ class CustomLoginButtom extends StatelessWidget {
       valueListenable: LoginController.loginController.inLoader,
       builder: (____, inLoader, ___) {
         return inLoader
-            ? ElevatedButton(
-                onPressed: () async {
-                  bool isValid = formkey.currentState!.validate();
-                  if (isValid) {
-                    if (await LoginController.loginController
-                        .authentication()) {
-                      // ignore: use_build_context_synchronously
-                      Navigator.pushReplacementNamed(context, '/homepage');
-                    } else {
-                      // ignore: use_build_context_synchronously
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Email ou senha inválidos'),
-                        ),
-                      );
+            ? SizedBox(
+                width: 150,
+                height: 42,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: const ContinuousRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                    ),
+                  ),
+                  onPressed: () async {
+                    bool isValid = formkey.currentState!.validate();
+                    if (isValid) {
+                      if (await LoginController.loginController
+                          .authentication()) {
+                        // ignore: use_build_context_synchronously
+                        Navigator.pushNamed(context, '/homepage');
+                      } else {
+                        // ignore: use_build_context_synchronously
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Email ou senha inválidos'),
+                          ),
+                        );
+                      }
                     }
-                  }
-                },
-                child: const Text('login'),
+                  },
+                  child: const Text('login'),
+                ),
               )
             : const CircularProgressIndicator();
       },
